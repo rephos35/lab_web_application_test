@@ -1,0 +1,50 @@
+h1 {
+    /* khaki */
+    color: palevioletred;
+    background: beige;
+    /* background-color: beige; */
+
+    border: 0.5rem outset pink;
+    border-radius: 10px;
+    /* border-width: 0.5rem;
+    border-style: solid;
+    border-color: pink;
+    border-radius: 10px; */
+
+    outline: 0.5rem solid khaki;
+    outline-offset: 0.5rem;
+
+    box-shadow: 0 0 2rem 2rem skyblue;
+
+
+
+    /* 
+    px
+    em:     c=p*1
+    rem:    e=html*1
+    %:      c=p*100%
+    */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    font-weight: bold;
+    /* line-height: px; */
+
+    /* 
+    margin:outside width ([margin], outline, box-sizing) 
+    > border: line width ([border])
+    > padding:inside width ([padding])
+    > content/text
+    */
+
+    margin: 3rem;
+    padding: 1rem;
+
+    /* container */
+    align-items: center;
+
+    /* text */
+    text-align: center;
+
+
+
+}

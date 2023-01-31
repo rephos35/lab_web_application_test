@@ -1,0 +1,178 @@
+body {
+    background: rgb(255, 247, 232);
+    /* height: 100%; */
+    margin: 3rem;
+    /* padding: 3rem; */
+    font-family: Arial;
+
+}
+
+h1 {
+    /* khaki */
+    color: darkolivegreen;
+    /* color: palevioletred; */
+    background-color: beige;
+    /* background: beige; */
+    /* background-color: beige; */
+    border: 0.5rem outset;
+    border-color: olivedrab;
+    /* border-color: pink; */
+    border-radius: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    font-weight: bolder;
+
+    margin: 3rem;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    padding: 1rem;
+
+    text-align: center;
+}
+.inputtypeimg{
+    height: 3rem;
+    margin-left: 3rem;
+    opacity: 0.5;
+}
+
+
+.input_list {
+    color: darkslategrey;
+    height: 50px;
+    line-height: 2rem;
+
+    font-size: 1.125rem;
+    margin: 3rem;
+
+
+}
+
+input[type=text] {
+    box-sizing: inherit;
+    line-height: 1.5rem;
+    font-size: 1rem;
+
+}
+
+input[type=submit]{
+    font-size: 1rem;
+    color:  whitesmoke;
+    background: darkseagreen;
+    border-radius: 3px;
+    border-width: 1px;
+
+}
+
+
+
+.found_books_block {
+    background: khaki;
+    height: 200px;
+    border-radius: 10px;
+    min-width: 750px;
+    align-content: center;
+
+
+    /* align-items: center; */
+}
+
+.found_books_block table {
+    color: ivory;
+    float: left;
+    /* padding: 25px 0px 0px 0px; */
+    padding-top: 25px;
+    padding-left: 25px;
+
+    line-height: 75px;
+    max-width: 80%;
+    text-align: center;
+    align-content: center;
+}
+
+.found_books_block thead {
+    background: gray;
+    overflow: hidden;
+}
+
+.found_books_block tbody {
+    background: rgb(173, 172, 172);
+    overflow: hidden;
+}
+
+.found_books_block tbody td {
+    line-height: 1.5rem;
+    height: 5rem;
+}
+
+
+.addbookimg {
+    float: right;
+    padding-right: 30px;
+    padding-top: 50px;
+    opacity: 0.5;
+
+}
+
+
+
+/* class */
+/* .image {
+    float: left;
+    padding: 25px;
+    height: 75%;
+} */
+
+
+.show_db_books_block{
+    background: yellowgreen;
+    height: 200px;
+    border-radius: 10px;
+    min-width: 750px;
+    align-content: center;
+
+}
+
+.show_db_books_block table {
+    color: ivory;
+    float: left;
+    /* padding: 25px 0px 0px 0px; */
+    padding-top: 25px;
+    padding-left: 25px;
+
+    line-height: 75px;
+    max-width: 80%;
+    text-align: center;
+    align-content: center;
+}
+
+.show_db_books_block thead {
+    background: gray;
+    overflow: hidden;
+}
+
+.show_db_books_block tbody {
+    background: rgb(173, 172, 172);
+    overflow: hidden;
+}
+
+.show_db_books_block tbody td {
+    line-height: 1.5rem;
+    height: 5rem;
+}
+
+.dbbookimg {
+    float: right;
+    padding-right: 10px;
+    padding-top: 70px;
+    opacity: 0.5;
+    height: 3.5rem;
+}
+
+.dbbookimg_mod {
+    float: right;
+    padding-right: 10px;
+    padding-top: 70px;
+    opacity: 0.5;
+    height: 3.5rem;
+}

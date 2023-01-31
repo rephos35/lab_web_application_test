@@ -1,0 +1,178 @@
+{%extends "base.html"%}
+{%block title%} Home {%endblock title%}
+
+
+{%block cssjs%}
+<link type="text/css" rel="stylesheet" href="static/css/style.css" />
+<script type="text/javascript" src="static/js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+{%endblock cssjs%}
+
+
+
+{%block content%}
+<!-- input_list -->
+<div>
+    <img src="static/image/manualinput.png" class="inputtypeimg" id="inputtype" title="手動輸入書本"
+        onclick="changeImgInputtype()" target="nm_iframe" alt="輸入書本" />
+    <div class="input_list" id="input_list">
+        <form action="/searchbook" method="post" enctype="multipart/form-data">
+            <label>書名:</label>
+            <input type="text" name="bookname" placeholder="書名" />
+            <label>&ensp;ISBN:</label>
+            <input type="text" name="bookisbn" placeholder="ISBN" />
+            <label>&ensp;ISBN 照片:</label>
+            <input type="file" name="barcodefile">
+            <input type="submit" name="search" value="查詢書本" />
+        </form>
+        <!-- <form method="post">
+            <label>書名:</label>
+            <input type="text" name="bookname" placeholder="書名"/>
+            <label>&ensp;作者:&nbsp;</label>
+            <input type="text" name="bookauthor" placeholder="作者"/>
+            <label>&ensp;出版社:</label>
+            <input type="text" name="bookpublisher" placeholder="出版社"/>
+            <label>&ensp;金額:</label>
+            <input type="text" name="bookcost" placeholder="$$$"/>
+            <label>&ensp;版本/備註:</label>
+            <input type="text" name="bookother" placeholder="版本/備註"/>
+            <input type="submit" name="save" value="儲存"/>
+        </form> -->
+    </div>
+</div>
+
+
+<!-- search bolck -->
+{% for search_book in search_books %}
+<div class="found_books_block">
+    <table>
+        <thead>
+            <tr>
+                <td width="40%">書名</td>
+                <td width="20%">作者</td>
+                <td width="15%">出版社</td>
+                <td width="10%">金額</td>
+                <td width="15%">版本</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{search_book["book_name"]}}</td>
+                <td>{{search_book["book_author"]}}</td>
+                <td>{{search_book["book_publisher"]}}</td>
+                <td>$$$</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="/addbook" method="post" target="nm_iframe">
+        <input type="text" name="addbook_number" value="{{search_book['book_number']}}" style="display:none" />
+        <input type="image" src="static/image/addbook.png" class="addbookimg"
+            id="search_book_{{search_book['book_number']}}" title="新增書本"
+            onclick="changeImgAddbook({{search_book['book_number']}})" alt="新增書本" />
+    </form>
+
+
+</div>
+<br />
+{% endfor %}
+
+
+<!-- db  block -->
+{% for db_book in db_books %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#modify_dbbook_{{db_book['id']}}").on("click", function () {
+            id = "{{db_book['id']}}";
+            $.ajax({
+                url: "/modifydbbook",
+                type: "POST",
+                cache: false,
+                data: $("#form_" + id).serialize(),
+                success: function (response) {
+                    // modify
+                    modify_dbbook = $("#modify_dbbook_{{db_book['id']}}");
+                    if (modify_dbbook.attr('src') == "static/image/modifybook.png") {
+                        modify_dbbook.attr('src', "static/image/modifiedbook.png");
+                        modify_dbbook.attr('title', "保存書本資訊");
+                        $("#type_" + id).attr('value', 'input');
+                        $("#name_" + id).show();
+                        $("#author_" + id).show();
+                        $("#publisher_" + id).show();
+                        $("#cost_" + id).show();
+                        $("#other_" + id).show();
+                    } else {
+                        // show
+                        // reload data
+                        form = $("form_{{db_book['id']}}");
+                        form.load(location.reload(form));
+
+                        modify_dbbook.attr('src', "static/image/modifybook.png");
+                        modify_dbbook.attr('title', "修改書本資訊");
+                        $("#type_" + id).attr('value', 'show');
+                        $("#name_" + id).hide();
+                        $("#author_" + id).hide();
+                        $("#publisher_" + id).hide();
+                        $("#cost_" + id).hide();
+                        $("#other_" + id).hide();
+                    }
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+    });
+</script>
+
+
+<div class="show_db_books_block">
+    <table>
+        <thead>
+            <tr>
+                <td class="info_bookname">書名</td>
+                <td class="info_bookauthor">作者</td>
+                <td class="info_bookpublisher">出版社</td>
+                <td class="info_bookcost">金額</td>
+                <td class="info_bookother">版本</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form id="form_{{db_book['id']}}">
+                    <td style="display:none"><input id="type_{{db_book['id']}}" type='text' name='type' value="show"
+                            style="display:none" /></td>
+                    <td style="display:none"><input id="id_{{db_book['id']}}" type='text' name='id'
+                            value="{{db_book['id']}}" style="display:none" /></td>
+                    <td>{{db_book["book_name"]}}&nbsp;<input id="name_{{db_book['id']}}" type='text' name='bookname'
+                            value="{{db_book['book_name']}}" style="display:none" /></td>
+                    <td>{{db_book["book_author"]}}&nbsp;<input id="author_{{db_book['id']}}" type='text'
+                            name='bookauthor' value="{{db_book['book_author']}}" style="display:none" /></td>
+                    <td>{{db_book["book_publisher"]}}&nbsp;<input id="publisher_{{db_book['id']}}" type='text'
+                            name='bookpublisher' value="{{db_book['book_publisher']}}" style="display:none" /></td>
+                    <td>{{db_book["book_cost"]}}&nbsp;<input id="cost_{{db_book['id']}}" type='text' name='bookcost'
+                            value="{{db_book['book_cost']}}" style="display:none" /></td>
+                    <td>{{db_book["book_other"]}}&nbsp;<input id="other_{{db_book['id']}}" type='text' name='bookother'
+                            value="{{db_book['book_other']}}" style="display:none" /></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+   
+    <form action="/deletedbbook" method="post">
+        <input type="text" name="deletedbbook_id" value="{{db_book['id']}}" style="display:none" />
+        <input type="image" src="static/image/deletebook.png" class="dbbookimg" id="delete_dbbook_{{db_book['id']}}" title="刪除書本"
+            alt="刪除書本"/>
+    </form>
+    <img src="static/image/modifybook.png" id="modify_dbbook_{{db_book['id']}}" class="dbbookimg_mod" title="修改書本資訊"
+        alt="修改資訊" name="show_book_info" />
+
+</div>
+<br/>
+{% endfor %}
+
+
+
+
+<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+{%endblock content%}
