@@ -199,7 +199,7 @@ def modify_db_book_view():
 
 if __name__ == "__main__":
     print("!!!")
-    app.run(host="0.0.0.0", debug=True, port="77")
+    app.run(host="0.0.0.0", debug=True) # port="77"
 
 
     

@@ -1,12 +1,19 @@
 # /etc/nginx/sites-available/default
-server {
-	listen 80 default_server;
-	# server_name example.com; # ngrok
-	# root /var/www/example.com;
-	# index index.html;
 
-	# request: 80/>77
+upstream myapp {
+	# ip_hash;
+	server localhost:66 ;
+	server localhost:77 backup;
+}
+
+server {
+	listen 80 default_server; # ngrok http 80 
+	# server_name $url;
+
+	# request: 80/>77, 66
 	location / {
-        proxy_pass http://127.0.0.1:77;
+        proxy_pass http://myapp;
 	}
 }
+
+
