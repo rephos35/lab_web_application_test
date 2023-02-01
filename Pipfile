@@ -12,6 +12,7 @@ fake-useragent = "*"
 pyzbar = "*"
 isbntools = "*"
 opencv-python-headless = "*"
+uwsgi = "*"
 
 [dev-packages]
 
