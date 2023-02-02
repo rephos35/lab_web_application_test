@@ -2,8 +2,9 @@
 
 upstream myapp {
 	# ip_hash;
-	server localhost:66 ;
-	server localhost:77 backup;
+	server localhost:77;
+	server localhost:66;
+	server localhost:55 backup;
 }
 
 server {
