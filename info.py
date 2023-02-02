@@ -26,7 +26,7 @@ headers = {
     "Accept-Language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
     "Cache-Control": "max-age=0",
     "Connection": "keep-alive",
-    "Cookie": "cookiesession1=678B28727DEA48AF6B99B7919DA73851; PHPSESSID=hc72cuaru2s8brumt1jd8sdl67; __tad=1674394089.4503445", #  __tad=1674248574.1688656 _git change ???
+    "Cookie": "cookiesession1=678B28725C6B7608B71039EF33AA0795; PHPSESSID=hc72cuaru2s8brumt1jd8sdl67; __tad=1674394089.4503445; _ga=GA1.3.859905126.1674807491; _gid=GA1.3.1343276462.1675316261; _gat=1", #  __tad=1674248574.1688656 _git change ???
     # _ga=GA1.3.859905126.1674807491; _gid=GA1.3.1237244282.1674807491; _gat=1; 
     "Host": "isbn.ncl.edu.tw",
     "Referer": crawler_book_url, #"https://isbn.ncl.edu.tw/NEW_ISBNNet/H30_SearchBooks.php?&Pact=DisplayAll"
